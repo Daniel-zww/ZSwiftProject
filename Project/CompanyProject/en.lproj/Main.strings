@@ -1,0 +1,30 @@
+
+/* Class = "UITabBarItem"; title = "我的"; ObjectID = "5U3-Ak-Mki"; */
+"5U3-Ak-Mki.title" = "我的";
+
+/* Class = "UITabBarItem"; title = "首页"; ObjectID = "Ep2-HR-tC2"; */
+"Ep2-HR-tC2.title" = "首页";
+
+/* Class = "UINavigationController"; title = "ZRootViewController"; ObjectID = "KGq-n7-5fc"; */
+"KGq-n7-5fc.title" = "ZRootViewController";
+
+/* Class = "UINavigationController"; title = "ZRUserViewController"; ObjectID = "OiI-Ld-dlW"; */
+"OiI-Ld-dlW.title" = "ZRUserViewController";
+
+/* Class = "UIViewController"; title = "ZHomeViewController"; ObjectID = "Ro0-ln-VG9"; */
+"Ro0-ln-VG9.title" = "ZHomeViewController";
+
+/* Class = "UITabBarItem"; title = "首页"; ObjectID = "YjA-n3-ykc"; */
+"YjA-n3-ykc.title" = "首页";
+
+/* Class = "UINavigationController"; title = "ZRHomeViewController"; ObjectID = "aWR-jJ-OKJ"; */
+"aWR-jJ-OKJ.title" = "ZRHomeViewController";
+
+/* Class = "UITabBarItem"; title = "我的"; ObjectID = "byU-eB-9qM"; */
+"byU-eB-9qM.title" = "我的";
+
+/* Class = "UITabBarController"; title = "ZMainViewController"; ObjectID = "fSD-pz-SEC"; */
+"fSD-pz-SEC.title" = "ZMainViewController";
+
+/* Class = "UIViewController"; title = "ZUserViewController"; ObjectID = "nF6-aQ-BIO"; */
+"nF6-aQ-BIO.title" = "ZUserViewController";

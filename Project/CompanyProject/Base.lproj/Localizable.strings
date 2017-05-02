@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  CompanyProject
+
+  Created by Daniel on 17/03/2017.
+  Copyright © 2017 Z. All rights reserved.
+*/
+
+"kLocalReturn" = "返回";
+"kLocalCancel" = "取消";
+"kLocalDone" = "完成";
+"kLocalDetermine" = "确定";
+"kLocalClear" = "清空";
+"kLocalPrompt" = "提示";
+"kLocalLogout" = "注销";
+"kLocalEdit" = "编辑";
+"kLocalDelete" = "删除";
+"kLocalShare" = "分享";
+"kLocalSubmit" = "提交";
+"kLocalClose" = "关闭";
+"kLocalPlay" = "播放";
+"kLocalElement" = "元";
+"kLocalMore" = "更多";
+"kLocalPhoto" = "图片";
+"kLocalSetting" = "设置";
+"kLocalReport" = "举报";
+"kLocalDownload" = "下载";
+"kLocalCollection" = "收藏";
+"kLocalInvitation" = "邀请";
+"kLocalUpload" = "上传";
+"kLocalSelect" = "选择";
+"kLocalLogin" = "登录";
+"kLocalRegister" = "注册";
+"kLocalRefresh" = "刷新";
+
+"kLocalHome" = "首页";
+"kLocalUser" = "我的";
+"kLocalSearch" = "搜索";
+
+"kLocalLaterUpdating" = "稍后更新";
+"kLocalNoLongerUpdating" = "不再提示";
+"kLocalRightNowUpdating" = "马上更新";
+
+"kLocalChangeAvatar" = "修改头像";
+"kLocalSelectCamera" = "相机拍照";
+"kLocalSelectAlbum" = "选择相册";
+"kLocalYourDeviceDoesNotSupportTheAlbum" = "您的设备不支持相册";
+"kLocalYourDeviceDoesNotSupportTheCamera" = "您的设备不支持相机";
+"kLocalThePhotosYouHaveSelectedHaveBeenCorrupted" = "您选择的照片已损坏";
+"kLocalThePhotosYouHaveCutHaveBeenCorrupted" = "您裁剪的照片已损坏";
+"kLocalYouAreUsingParentalControl" = "您正在使用家长控制权限";
+"kLocalYouDisableTheAlbumOpenTheAlbumInTheSettingsToUse" = "您禁用了相册,请在设置中开启相册功能后，才能使用";
+"kLocalYouDisableTheCameraOpenTheCameraInTheSettingsToUse" = "您禁用了相机,请在设置中开启相机功能后，才能使用";
+
+
+
+
+
