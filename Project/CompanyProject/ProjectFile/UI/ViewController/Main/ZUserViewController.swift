@@ -75,7 +75,7 @@ class ZUserViewController: ZBaseViewController, UIImagePickerControllerDelegate,
             guard let imgData = UIImagePNGRepresentation(self.imgSelect!) else {
                 return
             }
-            DataApi.shared.postChangeUserAvatar("341", imgData, { (progress) in
+            sns.postChangeUserAvatar("341", imgData, { (progress) in
                 
             }, { 
                 

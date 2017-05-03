@@ -54,7 +54,7 @@ class ZLoginViewController: ZBaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @objc private func btnLoginClick() {
-        DataApi.shared.postLogin("13658067608", "qqqqqq", { [weak self] (result) in
+        sns.postLogin("13658067608", "qqqqqq", { [weak self] (result) in
             ZProgressHUD.dismiss()
             ZProgressHUD.showSuccess("登录成功")
             

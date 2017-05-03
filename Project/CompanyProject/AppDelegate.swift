@@ -99,6 +99,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             PushHelper.setPushContentWithUserInfo(userInfo: userInfo)
         }
     }
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        if application.applicationState != .active {
+            PushHelper.setPushContentWithUserInfo(userInfo: notification.userInfo)
+        }
+    }
     /// iOS10+处理前台收到通知的代理方法
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

@@ -130,4 +130,6 @@ class DataApi: NSObject {
     }
 }
 
+let sns = DataApi.shared
+
 
