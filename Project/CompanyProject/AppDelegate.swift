@@ -266,11 +266,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserSetting.reload()
         PathManager.createFileDir()
     }
-    ///删除App数量
-    private func clearApplicationIcon() {
-        UIApplication.shared.applicationIconBadgeNumber = 1
-        UIApplication.shared.applicationIconBadgeNumber = 0
-    }
     ///添加本地通知
     private func addLocationNotification(_ userInfo: [AnyHashable : Any]) {
         if UIApplication.shared.applicationState == .active {
@@ -285,7 +280,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             localNotification.userInfo = userInfo
             // 设置重复的次数
             localNotification.repeatInterval = NSCalendar.Unit(rawValue: 0)
-            // 通知的触发时间，例如即刻起1秒后
+            // 每隔2秒发送一个通知
             localNotification.fireDate = Date(timeIntervalSinceNow: 2)
             // 添加通知到系统队列中，系统会在指定的时间触发
             UIApplication.shared.scheduleLocalNotification(localNotification)
@@ -322,17 +317,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // MARK: - PublicMethod
     
-    open class func app() -> AppDelegate {
+    public class func app() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
-    open class func getVCWithIdentifier(_ identifier: String) -> UIViewController? {
+    public class func getVCWithIdentifier(_ identifier: String) -> UIViewController? {
         return AppDelegate.app().storyBoard?.instantiateViewController(withIdentifier: identifier)
     }
-    open class func getRootVC() -> ZRootViewController {
+    public class func getRootVC() -> ZRootViewController {
         return AppDelegate.app().storyBoard?.instantiateViewController(withIdentifier: "VCRootMainSID") as! ZRootViewController
     }
-    open class func getMainVC() -> ZMainViewController {
+    public class func getMainVC() -> ZMainViewController {
         return AppDelegate.app().storyBoard?.instantiateViewController(withIdentifier: "VCMainSID") as! ZMainViewController
+    }
+    ///删除App数量
+    public func clearApplicationIcon() {
+        UIApplication.shared.applicationIconBadgeNumber = 1
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     ///更新App服务器配置信息
     public static func setRefreshAppConfig() {
@@ -353,14 +353,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     /// 登录
-    open class func loginin(_ user: ModelUser) {
+    public class func loginin(_ user: ModelUser) {
         UserSetting.login(user)
         AppDelegate.app().setUMengAlias()
         NotificationCenter.default.post(name: keyNotificationNameLoginChange, object: nil)
         NotificationCenter.default.post(name: keyNotificationAppNumberChange, object: nil)
     }
     /// 注销
-    open class func loginout() {
+    public class func loginout() {
         AppDelegate.app().removeUMengAlias()
         UserSetting.del()
         NotificationCenter.default.post(name: keyNotificationNameLoginChange, object: nil)

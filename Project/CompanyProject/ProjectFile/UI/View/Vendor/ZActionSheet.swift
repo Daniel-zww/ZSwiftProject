@@ -11,7 +11,7 @@ import UIKit
 class ZActionSheet: NSObject {
 
     /// 弹出提示框-自定义按钮
-    open class func showAction(_ title: String?, _ message: String?, _ buttons: [String], _ completion: @escaping (_: (_ btnIndex: Int) -> Void)) {
+    public class func showAction(_ title: String?, _ message: String?, _ buttons: [String], _ completion: @escaping (_: (_ btnIndex: Int) -> Void)) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
         let actionCancel = UIAlertAction(title: kLocalCancel, style: UIAlertActionStyle.cancel) { (action) in
         }

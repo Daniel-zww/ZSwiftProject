@@ -10,8 +10,49 @@ import Foundation
 import UIKit
 import CryptoSwift
 
+/// 设置Tab数量
+public let kTabbarItemNum: CGFloat = 5
+/// 默认Tag值
+private let kBadgaDefaultTag: Int = 888
+
 extension UITabBar {
-    
+    /// 显示小红点
+    func showBadgeOnItemIndex(_ index: Int) {
+        let success =  self.removeBadgeOnItemIndex(index)
+        if !success { return }
+        // 小红点大小
+        let badgaSize: CGFloat = 8
+        let badgeView = UIView()
+        badgeView.tag = kBadgaDefaultTag+index
+        badgeView.border(color: kColorClear, radius: badgaSize/2, width: 0)
+        badgeView.backgroundColor = kColorTabbarSelectItem
+        // 确定小红点位置
+        let tabFrame = self.frame
+        var percentX = (CGFloat(index) + 0.6) / kTabbarItemNum
+        if kIsIPadDevice {
+            percentX = (CGFloat(index) + 0.85) / kTabbarItemNum
+        }
+        let x = CGFloat(ceilf(Float(percentX * tabFrame.size.width)))
+        let y = CGFloat(ceilf(Float(0.1 * tabFrame.size.height)))
+        badgeView.frame = CGRect(x: x, y: y, width: badgaSize, height: badgaSize)
+        self.addSubview(badgeView)
+    }
+    /// 隐藏小红点
+    func dismissBadgeOnItemIndex(_ index: Int) {
+        let _ = self.removeBadgeOnItemIndex(index)
+    }
+    /// 移除小红点
+    private func removeBadgeOnItemIndex(_ index: Int) -> Bool {
+        var success: Bool = false
+        for subView in self.subviews {
+            if subView.tag == (kBadgaDefaultTag + index) {
+                subView.removeFromSuperview()
+                success = true
+                break
+            }
+        }
+        return success
+    }
 }
 extension UINavigationBar {
     
@@ -276,7 +317,7 @@ extension UIView {
     }
 }
 extension UIImageView {
-    open class func getDLineView() -> UIImageView {
+    public class func getDLineView() -> UIImageView {
         let imgLine = UIImageView()
         imgLine.backgroundColor = kColorTVCLine1
         return imgLine
@@ -327,6 +368,47 @@ extension UIAlertAction {
         set(newValue) {
             objc_setAssociatedObject(self, &AssociatedKeys.tagKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
+    }
+}
+extension UILabel {
+    /// 单例模式
+    private static let shareLabel = UILabel()
+    /// 获取文本最大宽度
+    func getLabelW(minW: CGFloat) -> CGFloat {
+        if let text = self.text {
+            let fontFrame = (text as NSString).boundingRect(with: CGSize(width: CGFloat(Float.greatestFiniteMagnitude), height: self.h), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: self.font], context: nil)
+            let lbW = fontFrame.size.width <= minW ? minW : (fontFrame.size.width + 1)
+            return lbW
+        }
+        return 0
+    }
+    /// 获取文本最大高度
+    func getLabelH(minH: CGFloat) -> CGFloat {
+        if let text = self.text {
+            let fontFrame = (text as NSString).boundingRect(with: CGSize(width: self.w, height: CGFloat(Float.greatestFiniteMagnitude)), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: self.font], context: nil)
+            let lbW = fontFrame.size.height <= minH ? minH : (fontFrame.size.height + 1)
+            return lbW
+        }
+        return 0
+    }
+    /// 设置自定义文本内容
+    func setLabelAttribute(range: NSRange, font: UIFont, color: UIColor) {
+        if let text = self.text {
+            let attText = NSMutableAttributedString(string: text)
+            attText.addAttribute(NSFontAttributeName, value: font, range: range)
+            attText.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+            self.attributedText = attText
+        }
+    }
+    /// 获取文本指定最大高度
+    public static func getMaxLineHeight(font: UIFont, width: CGFloat, lineNum: Int) -> CGFloat {
+        let label = UILabel.shareLabel
+        label.text = kOne
+        label.font = font
+        label.numberOfLines = lineNum
+        label.frame = CGRect(x: 0, y: 0, width: width, height: 10)
+        let newH = label.getLabelH(minH: 10)
+        return newH
     }
 }
 

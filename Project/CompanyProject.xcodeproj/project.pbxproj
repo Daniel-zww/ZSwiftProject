@@ -14,6 +14,7 @@
 		6501DE101E8521A400B81A61 /* FontSizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501DE0F1E8521A400B81A61 /* FontSizeManager.swift */; };
 		6501DE121E8522C500B81A61 /* ZFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501DE111E8522C500B81A61 /* ZFont.swift */; };
 		6501DE141E85284F00B81A61 /* ZButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501DE131E85284F00B81A61 /* ZButton.swift */; };
+		65231C141EBC2399001CC0DC /* ZLabelLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65231C131EBC2399001CC0DC /* ZLabelLine.swift */; };
 		65494AAC1E81088300E398C6 /* ZView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65494AAB1E81088300E398C6 /* ZView.swift */; };
 		65494AAE1E81088F00E398C6 /* ZLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65494AAD1E81088F00E398C6 /* ZLabel.swift */; };
 		65494AB01E81089C00E398C6 /* ZImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65494AAF1E81089C00E398C6 /* ZImageView.swift */; };
@@ -97,6 +98,7 @@
 		6501DE0F1E8521A400B81A61 /* FontSizeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSizeManager.swift; sourceTree = "<group>"; };
 		6501DE111E8522C500B81A61 /* ZFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFont.swift; sourceTree = "<group>"; };
 		6501DE131E85284F00B81A61 /* ZButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZButton.swift; sourceTree = "<group>"; };
+		65231C131EBC2399001CC0DC /* ZLabelLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLabelLine.swift; sourceTree = "<group>"; };
 		65494AAB1E81088300E398C6 /* ZView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZView.swift; sourceTree = "<group>"; };
 		65494AAD1E81088F00E398C6 /* ZLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLabel.swift; sourceTree = "<group>"; };
 		65494AAF1E81089C00E398C6 /* ZImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZImageView.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				65800A4A1EAF1FB3005A3903 /* ZBackgroundView.swift */,
+				65231C131EBC2399001CC0DC /* ZLabelLine.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				65B34FAF1EA5FAB000C0EA4A /* ZAlertView.swift in Sources */,
 				6501DE121E8522C500B81A61 /* ZFont.swift in Sources */,
 				6501DE141E85284F00B81A61 /* ZButton.swift in Sources */,
+				65231C141EBC2399001CC0DC /* ZLabelLine.swift in Sources */,
 				6569EA141E8F44AC00763CC1 /* PushHelper.swift in Sources */,
 				65494AAC1E81088300E398C6 /* ZView.swift in Sources */,
 				65BB56DD1EA4D2AA009032AB /* KeyManager.swift in Sources */,

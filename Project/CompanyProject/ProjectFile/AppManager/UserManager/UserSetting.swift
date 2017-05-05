@@ -77,6 +77,8 @@ class UserSetting: NSObject {
         if dicCurrUserSettings == nil {
             dicCurrUserSettings = Dictionary<String, Any>()
         }
+        //更新登录时间
+        dicCurrUserSettings?["LastDate"] = Date(timeIntervalSinceNow: 0).toString
         //设置当前登录用户ID
         let userId = dicCurrUserSettings?["UserId"] as? String
         strCurrUserId = userId == nil ? kUserDefaultId : userId!
@@ -101,11 +103,11 @@ class UserSetting: NSObject {
             }
         }
         hisLogin.insert(kUserDefaultId, at: 0)
-        dicAllUserSettings?["HisLoginAccount"] = hisLogin
+        dicAllUserSettings?["HisLogin"] = hisLogin
     }
     /// 获取历史登录用户
     private class func getHisLogin() -> Array<String> {
-        var userIds = dicAllUserSettings?["HisLoginAccount"] as? Array<String>
+        var userIds = dicAllUserSettings?["HisLogin"] as? Array<String>
         if userIds == nil {
             userIds = Array<String>()
         }

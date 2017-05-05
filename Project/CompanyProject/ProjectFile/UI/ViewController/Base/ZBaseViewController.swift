@@ -20,9 +20,9 @@ class ZBaseViewController: UIViewController {
     
     // MARK: - PublicProperty
     
-    open let cellId: String = "cellId"
+    public let cellId: String = "cellId"
     ///记录ViewController是否消失 YES消失,NO未消失
-    open var isDisappear: Bool = false
+    public var isDisappear: Bool = false
     
     // MARK: - SuperProperty
     
@@ -130,13 +130,13 @@ class ZBaseViewController: UIViewController {
     
     // MARK: - PublicButton
     
-    open func setBackButton() -> () {
+    public func setBackButton() -> () {
         self.navigationItem.leftBarButtonItem = nil
         let btnBack = self.getBackButton(title: kLocalReturn)
         btnBack.addTarget(self, action: #selector(btnLeftClick), for: UIControlEvents.touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnBack)
     }
-    open func setCloseButton() -> () {
+    public func setCloseButton() -> () {
         self.navigationItem.leftBarButtonItem = nil
         let btnClose = UIBarButtonItem(title: kLocalClose, style: UIBarButtonItemStyle.done, target: self, action: #selector(btnLeftClick))
         btnClose.tintColor = kColorMain
@@ -149,12 +149,12 @@ class ZBaseViewController: UIViewController {
     // MARK: - PublicMethod
     
     ///导航栏设置透明
-    open func setNavBarAlpha(alpha: CGFloat) {
+    public func setNavBarAlpha(alpha: CGFloat) {
         self.viewNavBack?.alpha = alpha
         self.imageNavLine?.alpha = alpha
     }
     ///导航栏分割线设置透明
-    open func setNavLineAlpha(alpha: CGFloat) {
+    public func setNavLineAlpha(alpha: CGFloat) {
         self.imageNavLine?.alpha = alpha
     }
     ///设置数据模型
@@ -165,10 +165,10 @@ class ZBaseViewController: UIViewController {
     // MARK: - NotificationCenter
     
     /// 注册主题
-    open func registerThemeNotification() {
+    public func registerThemeNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setThemeChange(sender:)), name: keyNotificationNameTheme, object: nil)
     }
-    open func removeThemeNotification() {
+    public func removeThemeNotification() {
         NotificationCenter.default.removeObserver(self, name: keyNotificationNameTheme, object: nil)
     }
     open func setThemeChange(sender: Notification) {
@@ -178,11 +178,11 @@ class ZBaseViewController: UIViewController {
         self.view.backgroundColor = theme.viewBackgroudColor
     }
     /// 注册键盘显示隐藏
-    open func registerKeyboardNotification() {
+    public func registerKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setKeyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setKeyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-    open func removeKeyboardNotification() {
+    public func removeKeyboardNotification() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }

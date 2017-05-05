@@ -25,13 +25,13 @@ fileprivate let kAfterDelay: TimeInterval = 3
 class ZProgressHUD: NSObject {
 
     /// 显示等待进度
-    open class func show(_ message: String?) {
+    public class func show(_ message: String?) {
         if let view = UIApplication.shared.keyWindow {
             let _ = BXProgressHUD.Builder(forView: view).text(message!).mode(.indeterminate).show()
         }
     }
     /// 隐藏等待进度
-    open class func dismiss() {
+    public class func dismiss() {
         if let view = UIApplication.shared.keyWindow {
             let huds = BXProgressHUD.allHUDsForView(view)
             huds.forEach { (hud) in
@@ -40,11 +40,11 @@ class ZProgressHUD: NSObject {
         }
     }
     /// 显示等待进度
-    open class func showInView(_ view: UIView, _ message: String?) {
+    public class func showInView(_ view: UIView, _ message: String?) {
         let _ = BXProgressHUD.Builder(forView: view).text(message!).mode(.indeterminate).show()
     }
     /// 隐藏等待进度
-    open class func dismissInView(_ view: UIView) {
+    public class func dismissInView(_ view: UIView) {
         let huds = BXProgressHUD.allHUDsForView(view)
         huds.forEach { (hud) in
             hud.hide()
@@ -52,15 +52,15 @@ class ZProgressHUD: NSObject {
     }
     
     /// 显示等待进度
-    open class func showInView(_ message: String?, _ task: URLSessionTask?, _ cancelBlock: () -> Void) {
+    public class func showInView(_ message: String?, _ task: URLSessionTask?, _ cancelBlock: () -> Void) {
         
     }
     /// 显示成功提示信息
-    open class func showSuccess(_ message: String?) {
+    public class func showSuccess(_ message: String?) {
         self.addMJNotifierWithText(message!, true, kColorRGBA(0, 0, 0, 0.6), textColor: kColorWhite)
     }
     /// 显示错误提示信息
-    open class func showError(_ message: String?) {
+    public class func showError(_ message: String?) {
         self.addMJNotifierWithText(message!, true, kColorRGBA(249, 65, 55, 0.6), textColor: kColorWhite)
     }
     /// 添加通知提示消息

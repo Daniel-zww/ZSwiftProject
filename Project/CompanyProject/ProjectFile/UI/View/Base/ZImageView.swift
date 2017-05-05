@@ -28,9 +28,6 @@ class ZImageView: UIImageView {
         super.init(frame: frame)
         self.innerInit()
     }
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-    }
     
     // MARK: - PrivateMethod
     

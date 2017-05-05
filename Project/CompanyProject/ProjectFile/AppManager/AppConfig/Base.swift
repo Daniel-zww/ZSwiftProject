@@ -60,5 +60,8 @@ public let kAppUrl: String = "itms-apps://itunes.apple.com/app/id\(kAppId)"
 ///项目App地址
 public let kAppVersionUrl: String = "https://itunes.apple.com/cn/lookup?id=\(kAppId)"
 
-
+//是否IPad
+public let kIsIPadDevice: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad)
+//是否IPhone
+public let kIsIPhoneDevice: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone)
 

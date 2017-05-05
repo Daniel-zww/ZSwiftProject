@@ -68,3 +68,12 @@ enum ZBackgroundState: Int {
     ///错误
     case Fail = 4
 }
+///文本横线方向
+enum ZLineAlignment: Int {
+    ///默认
+    case All = 0
+    ///左
+    case Left = 1
+    ///右
+    case Right = 2
+}

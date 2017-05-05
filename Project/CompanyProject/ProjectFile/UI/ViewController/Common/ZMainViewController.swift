@@ -90,6 +90,16 @@ class ZMainViewController: UITabBarController, UITabBarControllerDelegate {
         tabBarItem.setTitleTextAttributes([NSFontAttributeName: ZFont.boldFontWithSize(size: kFontSizeMin)], for: UIControlState.selected)
         vc.tabBarItem = tabBarItem
     }
+    /// 数量发生改变
+    private func setAppNumberChange(_ sender: NSNotification?) {
+        if self.viewControllers != nil && self.viewControllers!.count > 0 {
+            if UserSetting.getAutoLogin() {
+                AppDelegate.app().clearApplicationIcon()
+            } else {
+                AppDelegate.app().clearApplicationIcon()
+            }
+        }
+    }
     
     // MARK: - UITabBarControllerDelegate
     
