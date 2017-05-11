@@ -34,9 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //添加3D Touch
         self.createTouchItemsWithIcons()
         //更新App服务器配置信息
-        AppDelegate.setRefreshAppConfig()
+        //AppDelegate.setRefreshAppConfig()
         //检测AppStore信息
-        self.checkAppStoreVersion()
+        //self.checkAppStoreVersion()
         //更新本地用户信息
         self.setConfigUserInfo()
         
@@ -214,16 +214,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             }
                             if let dicInfo = result.first {
                                 let updateVersion = dicInfo["version"]
-                                guard let newVersion = updateVersion as? String else {
+                                guard let newVersion = updateVersion as? NSNumber else {
                                     return
                                 }
-                                let modelVersion = ModelAppVersion.find("appVersion == %@", args: newVersion)
+                                let strNewVersion = newVersion.toFloatString
+                                let modelVersion = ModelAppVersion.find("appVersion == %@", args: strNewVersion)
                                 guard let appVersion = modelVersion as? ModelAppVersion else {
                                     return
                                 }
-                                let paramVersionKey = "appVersion\(newVersion)"
+                                let paramVersionKey = "appVersion\(strNewVersion)"
                                 let modelParams = ModelParams.find("name == %@", args: paramVersionKey) as? ModelParams
-                                if kAppVersion != newVersion && modelParams == nil  {
+                                if kAppVersion != strNewVersion && modelParams == nil  {
                                     let trackViewUrl = dicInfo["trackViewUrl"] as! String
                                     ZAlertView.showAlert(appVersion.title!, appVersion.content!, [kLocalLaterUpdating, kLocalNoLongerUpdating], kLocalRightNowUpdating, { (btnIndex) in
                                         switch btnIndex {
@@ -232,7 +233,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                             UIApplication.shared.openURL(url)
                                             break
                                         case 1: //不再提示
-                                            let modelP = ModelParams.create(paramVersionKey, value: newVersion)
+                                            let modelP = ModelParams.create(paramVersionKey, value: newVersion.toFloatString)
                                             let _ = modelP.save()
                                             break
                                         case 2: //稍后更新

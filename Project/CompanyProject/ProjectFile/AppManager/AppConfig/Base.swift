@@ -47,7 +47,17 @@ public let kViewItemFrame: CGRect = CGRect(x: 0, y: kAppTopHeight, width: kAppFr
 public let kViewNavFrame: CGRect = CGRect(x: 0, y: 0, width: kAppFrameWidth, height: kAppTopHeight)
 
 ///获取App版本
-public let kAppVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+public var kAppVersion: String {
+    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
+    if let appVersion = version {
+        switch appVersion {
+        case is NSNumber: return (appVersion as! NSNumber).toFloatString
+        case is String: return appVersion as! String
+        default: break
+        }
+    }
+    return "1.0.0"
+}
 ///获取App名称
 public let kAppName: String = Bundle.main.infoDictionary?["CFBundleDisplayName"] as! String
 ///手机操作系统版本

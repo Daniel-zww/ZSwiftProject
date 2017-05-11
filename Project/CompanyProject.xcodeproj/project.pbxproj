@@ -266,9 +266,9 @@
 				6554DA751E7BCC8000D4CB86 /* CompanyProject */,
 				6554DA8D1E7BCC8000D4CB86 /* CompanyProjectTests */,
 				6554DA981E7BCC8000D4CB86 /* CompanyProjectUITests */,
-				6554DA741E7BCC8000D4CB86 /* Products */,
-				5CABDF6FE6004956E2A77203 /* Pods */,
 				A0DB87AE254608F087C2F070 /* Frameworks */,
+				5CABDF6FE6004956E2A77203 /* Pods */,
+				6554DA741E7BCC8000D4CB86 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -611,9 +611,8 @@
 				TargetAttributes = {
 					6554DA721E7BCC8000D4CB86 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5YTH3WKNZJ;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -970,7 +969,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CompanyProject/CompanyProject.entitlements;
-				DEVELOPMENT_TEAM = 5YTH3WKNZJ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = CompanyProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -979,10 +979,10 @@
 					"$(PROJECT_DIR)/CompanyProject/ProjectFile/Vendor/UMessage_Sdk_1.5.0a",
 				);
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wutong.project;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniel.project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c8ef8eae-b230-4d88-bced-2caf3ab1269b";
-				PROVISIONING_PROFILE_SPECIFIER = Project_Dev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CompanyProject/CompanyProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -998,18 +998,18 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CompanyProject/CompanyProject.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 5YTH3WKNZJ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CompanyProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CompanyProject/ProjectFile/Vendor/UMessage_Sdk_1.5.0a",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wutong.project;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniel.project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fcee19ab-c54e-439c-b25b-793a05d3eacb";
-				PROVISIONING_PROFILE_SPECIFIER = Project_Dis_HOC;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CompanyProject/CompanyProject-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				WARNING_CFLAGS = "-Wno-unused-variable";

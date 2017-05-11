@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="ModelUser">
     <entity name="ModelAppVersion" representedClassName="ModelAppVersion" syncable="YES" codeGenerationType="class">
         <attribute name="appStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="appVersion" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="appVersion" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -16,8 +16,8 @@
         <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ModelUser" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="ModelAppVersion" positionX="-63" positionY="9" width="128" height="105"/>
         <element name="ModelParams" positionX="-54" positionY="36" width="128" height="75"/>
+        <element name="ModelUser" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

@@ -10,17 +10,17 @@ import UIKit
 import QuartzCore
 import BXProgressHUD
 
-fileprivate let kNOTIFIER_LABEL_FONT = UIFont(name: "HelveticaNeue-Light", size: 17)
-fileprivate let kNOTIFIER_CANCEL_FONT = UIFont(name: "HelveticaNeue-Light", size: 13)
-fileprivate let kTagMJAlertView: NSInteger = 1812
-fileprivate let kxPadding: CGFloat = 10
-fileprivate let kzPosition: CGFloat = 400
-fileprivate let kLabelHeight: CGFloat = 40
-fileprivate let kCancelButtonHeight: CGFloat = 30
-fileprivate let kSeparatorHeight: CGFloat = 1
-fileprivate let kHeightFromBottom: CGFloat = 20
-fileprivate let kMaxWidth: CGFloat = 290
-fileprivate let kAfterDelay: TimeInterval = 3
+fileprivate let kNotificationMessageLabelFont = UIFont(name: "HelveticaNeue-Light", size: 17)
+fileprivate let kNotificationMessageCancelFont = UIFont(name: "HelveticaNeue-Light", size: 13)
+fileprivate let kNotificationMessageTagMJAlertView: NSInteger = 1812
+fileprivate let kNotificationMessagePadding: CGFloat = 10
+fileprivate let kNotificationMessagePosition: CGFloat = 400
+fileprivate let kNotificationMessageLabelHeight: CGFloat = 40
+fileprivate let kNotificationMessageCancelButtonHeight: CGFloat = 30
+fileprivate let kNotificationMessageSeparatorHeight: CGFloat = 1
+fileprivate let kNotificationMessageHeightFromBottom: CGFloat = 20
+fileprivate let kNotificationMessageMaxWidth: CGFloat = 290
+fileprivate let kNotificationMessageAfterDelay: TimeInterval = 3
 
 class ZProgressHUD: NSObject {
 
@@ -67,26 +67,26 @@ class ZProgressHUD: NSObject {
     private class func addMJNotifierWithText(_ text: String, _ shouldDismiss: Bool, _ backgroundColor: UIColor, textColor: UIColor) {
         let screenBounds = UIApplication.shared.keyWindow?.bounds
         let width = CGFloat.greatestFiniteMagnitude
-        let notifierRect = kNOTIFIER_LABEL_FONT?.sizeOfString(string: text, constrainedToWidth: Double(width))
-        let notifierWidth = min(notifierRect!.width, CGFloat(kMaxWidth))
+        let notifierRect = kNotificationMessageLabelFont?.sizeOfString(string: text, constrainedToWidth: Double(width))
+        let notifierWidth = min(notifierRect!.width, CGFloat(kNotificationMessageMaxWidth))
         let xOffset = (screenBounds!.width - notifierWidth) / 2
-        var notifierHeight = kLabelHeight
+        var notifierHeight = kNotificationMessageLabelHeight
         if shouldDismiss == false {
-            notifierHeight = notifierHeight + kCancelButtonHeight + kSeparatorHeight
+            notifierHeight = notifierHeight + kNotificationMessageCancelButtonHeight + kNotificationMessageSeparatorHeight
         }
-        let yOffset = screenBounds!.height - notifierHeight - kHeightFromBottom
+        let yOffset = screenBounds!.height - notifierHeight - kNotificationMessageHeightFromBottom
         let finalFrame = CGRect(x: xOffset, y: yOffset, width: notifierWidth, height: notifierHeight)
         var notifierView = self.checkIfNotifierExistsAlready()
         if notifierView == nil {
             notifierView = UIView(frame: CGRect(x: xOffset, y: screenBounds!.height, width: notifierWidth, height: notifierHeight))
             notifierView?.backgroundColor = backgroundColor
-            notifierView?.tag = kTagMJAlertView
+            notifierView?.tag = kNotificationMessageTagMJAlertView
             notifierView?.clipsToBounds = true
             notifierView?.layer.cornerRadius = 5.0
             UIApplication.shared.keyWindow?.addSubview(notifierView!)
             UIApplication.shared.keyWindow?.bringSubview(toFront: notifierView!)
-
-            let textLabel = UILabel(frame: CGRect(x: kxPadding, y: 0, width: notifierWidth - 2*kxPadding, height: kLabelHeight))
+            
+            let textLabel = UILabel(frame: CGRect(x: kNotificationMessagePadding, y: 0, width: notifierWidth - 2*kNotificationMessagePadding, height: kNotificationMessageLabelHeight))
             textLabel.adjustsFontSizeToFitWidth = true
             textLabel.backgroundColor = kColorClear
             textLabel.textAlignment = NSTextAlignment.center
@@ -96,22 +96,23 @@ class ZProgressHUD: NSObject {
             notifierView?.addSubview(textLabel)
             
             if shouldDismiss == true {
-                self.perform(#selector(dismissMJNotifier) , with: nil, afterDelay: kAfterDelay)
+                self.perform(#selector(dismissMJNotifier) , with: nil, afterDelay: kNotificationMessageAfterDelay)
             } else {
-                let separatorImageView = UIImageView(frame: CGRect(x: 0.0, y: textLabel.frame.height, width: notifierWidth, height: kSeparatorHeight))
+                let separatorImageView = UIImageView(frame: CGRect(x: 0.0, y: textLabel.frame.height, width: notifierWidth, height: kNotificationMessageSeparatorHeight))
                 separatorImageView.backgroundColor = backgroundColor
                 notifierView?.addSubview(separatorImageView)
                 
                 let btnCancel = UIButton(type: UIButtonType.custom)
-                btnCancel.frame = CGRect(x: 0.0, y: separatorImageView.frame.maxY, width: notifierWidth, height: kCancelButtonHeight)
+                btnCancel.frame = CGRect(x: 0.0, y: separatorImageView.frame.maxY, width: notifierWidth, height: kNotificationMessageCancelButtonHeight)
                 btnCancel.backgroundColor = backgroundColor
                 btnCancel.setTitle(kLocalCancel, for: UIControlState.normal)
-                btnCancel.titleLabel?.font = kNOTIFIER_CANCEL_FONT
+                btnCancel.titleLabel?.font = kNotificationMessageCancelFont
                 btnCancel.addTarget(self, action: #selector(dismissMJNotifier), for: UIControlEvents.touchUpInside)
                 notifierView?.addSubview(btnCancel)
             }
             self.startEntryAnimation(notifierView!, finalFrame)
         } else {
+            notifierView?.backgroundColor = backgroundColor
             self.updateNotifierWithAnimation(notifierView!, text: text, { (finished) in
                 var atLastFrame = finalFrame
                 atLastFrame.origin.y = finalFrame.origin.y + 8
@@ -126,31 +127,30 @@ class ZProgressHUD: NSObject {
                     }
                 }
                 textLabel?.text = text
-                textLabel?.frame = CGRect(x: kxPadding, y: 0.0, width: notifierWidth - 2 * kxPadding, height: kLabelHeight)
+                textLabel?.frame = CGRect(x: kNotificationMessagePadding, y: 0.0, width: notifierWidth - 2 * kNotificationMessagePadding, height: kNotificationMessageLabelHeight)
                 if shouldDismiss == false {
-                    let separatorImageView = UIImageView(frame: CGRect(x: 0.0, y: textLabel!.frame.height, width: notifierView!.frame.width, height: kSeparatorHeight))
+                    let separatorImageView = UIImageView(frame: CGRect(x: 0.0, y: textLabel!.frame.height, width: notifierView!.frame.width, height: kNotificationMessageSeparatorHeight))
                     separatorImageView.backgroundColor = backgroundColor
                     notifierView?.addSubview(separatorImageView)
                     
                     let btnCancel = UIButton(type: UIButtonType.custom)
-                    btnCancel.frame = CGRect(x: 0.0, y: separatorImageView.frame.maxY, width: notifierView!.frame.width, height: kCancelButtonHeight)
+                    btnCancel.frame = CGRect(x: 0.0, y: separatorImageView.frame.maxY, width: notifierView!.frame.width, height: kNotificationMessageCancelButtonHeight)
                     btnCancel.backgroundColor = backgroundColor
                     btnCancel.setTitle(kLocalCancel, for: UIControlState.normal)
-                    btnCancel.titleLabel?.font = kNOTIFIER_CANCEL_FONT
+                    btnCancel.titleLabel?.font = kNotificationMessageCancelFont
                     btnCancel.addTarget(self, action: #selector(dismissMJNotifier), for: UIControlEvents.touchUpInside)
                     notifierView?.addSubview(btnCancel)
                 }
-                UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+                UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                     notifierView!.alpha = 1
                     notifierView!.frame = finalFrame
                 }, completion: { (finished) in
                 })
             })
             if shouldDismiss == true {
-                self.perform(#selector(dismissMJNotifier) , with: nil, afterDelay: kAfterDelay)
+                self.perform(#selector(dismissMJNotifier) , with: nil, afterDelay: kNotificationMessageAfterDelay)
             }
         }
-
     }
     private class func checkIfNotifierExistsAlready() -> UIView? {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(dismissMJNotifier), object: nil)
@@ -158,7 +158,7 @@ class ZProgressHUD: NSObject {
         let subviews = UIApplication.shared.keyWindow?.subviews
         if subviews != nil {
             subviews!.forEach({ (view) in
-                if view.tag == kTagMJAlertView && view.isKind(of: UIView.classForCoder()) {
+                if view.tag == kNotificationMessageTagMJAlertView && view.isKind(of: UIView.classForCoder()) {
                     notifier = view
                 }
             })
@@ -171,7 +171,7 @@ class ZProgressHUD: NSObject {
         let subviews = UIApplication.shared.keyWindow?.subviews
         if subviews != nil {
             subviews!.forEach({ (view) in
-                if view.tag == kTagMJAlertView && view.isKind(of: UIView.classForCoder()) {
+                if view.tag == kNotificationMessageTagMJAlertView && view.isKind(of: UIView.classForCoder()) {
                     notifier = view
                 }
             })
@@ -187,7 +187,7 @@ class ZProgressHUD: NSObject {
         var finalFrame = notifierView.frame
         finalFrame.origin.y = finalFrame.origin.y + 8
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             notifierView.alpha = 0
             notifierView.frame = finalFrame
         }) { (finished) in
@@ -199,22 +199,22 @@ class ZProgressHUD: NSObject {
         var newFinalFrame = finalFrame
         newFinalFrame.origin.y = finalFrame.origin.y - 15
         let transform = self.transformWithXAxisValue(-0.1, 45)
-        notifierView.layer.zPosition = kzPosition
+        notifierView.layer.zPosition = kNotificationMessagePosition
         notifierView.layer.transform = transform
-        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             notifierView.frame = finalFrame
             
             let transform = self.transformWithXAxisValue(0.1, 15)
-            notifierView.layer.zPosition = kzPosition
+            notifierView.layer.zPosition = kNotificationMessagePosition
             notifierView.layer.transform = transform
         }) { (finished) in
-            UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+            UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 var atLastFrame = finalFrame
                 atLastFrame.origin.y = finalYOffset
                 notifierView.frame = atLastFrame
                 
                 let transform = self.transformWithXAxisValue(0, 90)
-                notifierView.layer.zPosition = kzPosition
+                notifierView.layer.zPosition = kNotificationMessagePosition
                 notifierView.layer.transform = transform
             }, completion: { (finished) in
                 
@@ -227,20 +227,20 @@ class ZProgressHUD: NSObject {
         let finalYOffset = notifierFrame.origin.y - 12
         notifierFrame.origin.y = finalYOffset
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             notifierView.frame = notifierFrame
             
             let transform = self.transformWithXAxisValue(0.1, 30)
-            notifierView.layer.zPosition = kzPosition
+            notifierView.layer.zPosition = kNotificationMessagePosition
             notifierView.layer.transform = transform
         }) { (finished) in
-            UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { 
+            UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 var atLastFrame = notifierView.frame
                 atLastFrame.origin.y = screenBounds.height
                 notifierView.frame = atLastFrame
                 
                 let transform = self.transformWithXAxisValue(-1, 90)
-                notifierView.layer.zPosition = kzPosition
+                notifierView.layer.zPosition = kNotificationMessagePosition
                 notifierView.layer.transform = transform
             }, completion: { (finished) in
                 notifierView.removeFromSuperview()

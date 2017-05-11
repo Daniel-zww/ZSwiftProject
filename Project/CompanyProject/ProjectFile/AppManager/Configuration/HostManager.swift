@@ -11,14 +11,14 @@ import UIKit
 #if DEBUG
     
     //局域网服务器
-    public let kApiServerUrl = "http://192.168.3.6:9090/"
+    public let kApiServerUrl = "http://192.168.3.6:9191/"
     public let kWebServerUrl = "http://192.168.3.6/"
     
 #else
     
     //外网正式服务器
-    public let kApiServerUrl = "https://www.wutongsx.com/"
-    public let kWebServerUrl = "https://www.wutongsx.com/"
+    public let kApiServerUrl = "https://www.daniel.com/"
+    public let kWebServerUrl = "https://www.daniel.com/"
     
 #endif
 
