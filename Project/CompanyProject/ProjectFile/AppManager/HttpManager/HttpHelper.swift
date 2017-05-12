@@ -38,6 +38,8 @@ class HttpHelper: NSObject {
     
     // MARK: - PrivateMethod
     
+    private static let httpManager = AFHTTPSessionManager(sessionConfiguration: URLSessionConfiguration.default)
+    private static let urlManager = AFURLSessionManager(sessionConfiguration: URLSessionConfiguration.default)
     private static func responseLog(response: DataResponse<String>) {
         ZLog("responseString: \(String(describing: response.request?.url?.absoluteString)), : \(String(describing: response.request?.httpBody?.utf8())), : \(String(describing: response.request?.allHTTPHeaderFields)), : \(response)")
     }
@@ -67,7 +69,7 @@ class HttpHelper: NSObject {
                                       taskBlock: @escaping (_: (_ sessionTask: URLSessionTask?) -> Void),
                                       resultBlock: @escaping (_: (_ result: RespHelper) -> Void)) {
         let strUrl: String = "\(kApiServerUrl)\(action)"
-        let manager = AFHTTPSessionManager(sessionConfiguration: URLSessionConfiguration.default)
+        let manager = HttpHelper.httpManager
         manager.responseSerializer = AFJSONResponseSerializer()
         var contentTypes = AFHTTPResponseSerializer().acceptableContentTypes
         contentTypes?.insert("text/html")
@@ -160,7 +162,7 @@ class HttpHelper: NSObject {
             for (key, value) in HttpHelper.requestHeaders {
                 request.setValue(value, forHTTPHeaderField: key)
             }
-            let manager = AFURLSessionManager(sessionConfiguration: URLSessionConfiguration.default)
+            let manager = HttpHelper.urlManager
             let task = manager.dataTask(with: request, uploadProgress: { (progress) in
                 
             }, downloadProgress: { (progress) in
